@@ -13,28 +13,28 @@ To pliki użyte do uruchomienia sterownika ESP8266 który odpowiada za liczenie 
 2. Zlicza zadziałania czujnika
 3. Wrzuca dane do serwera poprzez HTML POST
 
-##Algorytm działania:
+## Algorytm działania:
 1. Zainicjalizuj przerwanie na pinie do którego jest podłączony transoptor (nóżka D8 i D7 w zależności 
 *Zliczaj kiedy czujnik zmienia stan na niski (lowering).
 2. Zainicjalizuj połączenie wifi (łącz do ustalonej sieci wifi)
 3. Nadaj licznik za pomocą HTML GET. 
 4. Oczekuj na odpowiedź. Jeżeli odpowiedź == "zapisano" to wyzeruj licznik
 
-##Aby odtworzyć utracony kod wystarczy połączyć przykłady:
+## Aby odtworzyć utracony kod wystarczy połączyć przykłady:
 1. ESP8266 HTML Client
 2. ESP8266 interrupts handling
 3. ESP8266 WiFi client
 
-##Prawidłowa funkcja działania:
+## Prawidłowa funkcja działania:
 Co 10 sekund mryga niebieski led na sterowniku. --> Jest to sygnalizacja o poprawnym wysłaniu danych do serwera.
 Za każdym razem 
 
-##Słownictwo:
+## Słownictwo:
 Płyta głowna --> Płyta z cyną robiona ręcznie
 
 Płyta mikrokontrolera; ESP8266; sterownika --> Płyta brandowana czarna profesjonalna. 
 
-##Dotychczasowe usterki:
+## Dotychczasowe usterki:
 1. Uszkodzenie transoptora 
 * Transoptor posiada 4 nóżki. Pierwsza para odpowiada ma diodę led a druga fototranzystor. Jeżeli uszkodzeniu uległ tranzystor to sygnał ujemny można uzyskać poprzez zwarcie tych nóżek z tranzystorem. Sprawdź multimetrem czy element jest sprawny (woltomierz wskazuje 19V przed ledem transoptora i 0V za ledem transoptora. Po załączeniu czujnika powinien pokazywać 0,7V na obu nóżkach --> jest to spadek napięcia na diodzie). Następnie sprawdź wyjście transoptora. Pojawia się na tych nóżkach 3,3V i 0V. (Po załączeniu na obu pojawia się 0,3V, jest to spadek napięcia na sprawnym tranzystorze.) 
 2. Uszkodzenie mikrokontrolera
