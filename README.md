@@ -1,6 +1,7 @@
 # ESP8266-PNP-Sensor-counter
 
-https://github.com/MarcinanBarbarzynca/ESP8266-PNP-Sensor-counter/blob/main/Schematic_ESP8266%20%2B%20PNP%20Proximity%20sensor%200.3_2021-01-15.png
+![alt text](https://github.com/MarcinanBarbarzynca/ESP8266-PNP-Sensor-counter/blob/main/Schematic_ESP8266%20%2B%20PNP%20Proximity%20sensor%200.3_2021-01-15.png)
+
 
 To pliki użyte do uruchomienia sterownika ESP8266 który odpowiada za liczenie elementów które opuszczają taśmę produkcyjną. 
 
