@@ -1,11 +1,11 @@
 # ESP8266-PNP-Sensor-counter
 
-![alt text](https://github.com/MarcinanBarbarzynca/ESP8266-PNP-Sensor-counter/blob/main/Schematic_ESP8266%20%2B%20PNP%20Proximity%20sensor%200.3_2021-01-15.png)
+![alt text](https://github.com/MarcinanBarbarzynca/ESP8266-PNP-Sensor-counter/blob/main/Schematic_ESP8266%20%2B%20PNP%20sensor%200.4_2021-02-17(1).png)
 
 Link do edytora. 2x
-https://oshwlab.com/polaski/esp8266-pnp-proximity-sensor-0-3
+https://oshwlab.com/polaski/esp8266-pnp-sensor-0-4/  V4
+https://oshwlab.com/polaski/esp8266-pnp-proximity-sensor_copy_copy_copy_copy V2
 
-https://easyeda.com/editor#id=c9eb642592244cddb602c6ccde10cbee
 
 To pliki użyte do uruchomienia sterownika ESP8266 który odpowiada za liczenie elementów które opuszczają taśmę produkcyjną. 
 
