@@ -2,6 +2,10 @@
 
 ![alt text](https://github.com/MarcinanBarbarzynca/ESP8266-PNP-Sensor-counter/blob/main/Schematic_ESP8266%20%2B%20PNP%20sensor%200.4_2021-02-17(1).png)
 
+## Co to jest?
+To licznik elementów które pojawią się w pobliżu czujnika zbliżeniowego/laserowego i tym podobnych podłączonych pod wejście płyty. 
+ESP8266 łączy się z siecią wifi i udostępnia dane do serwera przy użyciu HTML POST. 
+
 Link do edytora. 2x
 https://oshwlab.com/polaski/esp8266-pnp-sensor-0-4/  V4
 https://oshwlab.com/polaski/esp8266-pnp-proximity-sensor_copy_copy_copy_copy V2
