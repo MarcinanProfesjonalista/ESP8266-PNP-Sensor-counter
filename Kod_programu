@@ -1,5 +1,8 @@
 /**
-Kod do sterownika 1.
+   BasicHTTPClient.ino
+
+    Created on: 24.05.2015
+
 */
 
 #include <Arduino.h>
@@ -13,35 +16,57 @@ Kod do sterownika 1.
 
 ESP8266WiFiMulti WiFiMulti;
 
- String Login = "Tu_SSID_sieci_wifi"; 
- String Password = "tu_haslo_sieci_wifi";
+#ifndef STASSID
+#define STASSID "nazwa sieci"
+#define STAPSK  "haslo sieci xD"
+#endif
+int numer_licznika = 8;
+const String sensor_id_number = "8"; //Id utworzonego w bazie danych sensora
 
 
- long interval = 10000; //Co ile ma wysyłać stan
+int koncowka_ip = 4+numer_licznika; //lenistwo do 50 są rezerwowane na liczniki. Czyli możemy zainstalować 60 urządzeń. 
+
+long interval = 10000; //Co ile ma wysyłać stan //10 sekund. 
 unsigned long previousMillis = 0;
 unsigned long currentMillis = 0;
 
-
-const String server_adress = "http://10.185.49.8/test/"; //Aktualnie jest serwer
+const String server_adress = "http://10.186.10.2/test/"; //Aktualnie jest serwer
 const String php_target = "insert.php"; //nazwa skryptu uzupelniajacego. Trzeba pamiętać o "?"
 const String field_one = "?nazwa=";
-const String sensor_id_number = "1"; //Id utworzonego w bazie danych sensora
 const String field_two = "&dane=";
+
+
 int i = 0;
 
 int flip_flop = 0;
-int led = D4;
-int czujnik = D8; //PNP Proximity sensor.
+int flip_flop_neta = 0;
+int led = D8;
+int led_neta = LED_BUILTIN;
+int czujnik = D7; 
 int licznik_impulsow = 0;
+
 void ICACHE_RAM_ATTR dodaj_l_jeden() { //Ta funkcja jest realizowana przez drugi wątek esp.
+{
+  //dodałem debouncing bo zliczało nieraz 3 krotnie więcej niż powinno. 
+ static unsigned long last_interrupt_time = 0;
+ unsigned long interrupt_time = millis();
+ // If interrupts come faster than 200ms, assume it's a bounce and ignore
+ if (interrupt_time - last_interrupt_time > 200)
+ {
   licznik_impulsow++;
-}
+
+ }
+ last_interrupt_time = interrupt_time;
+} 
+  
+ }
 
 
 
 void setup() {
+  pinMode(led_neta, OUTPUT);
   pinMode(led, OUTPUT);
-  pinMode(czujnik, INPUT);
+  pinMode(czujnik, INPUT); //nie moze byc pullup
   Serial.begin(115200);
   // Serial.setDebugOutput(true);
   Serial.println();
@@ -51,12 +76,16 @@ void setup() {
     delay(1000);
   }
 
-  //  if (!WiFi.config(local_IP,subnet)) {
-  //    Serial.println("STA Failed to configure");
-  //  }
   WiFi.mode(WIFI_STA);
 
-  WiFiMulti.addAP(Login, Password);
+    //Statyczne IP Tu musisz zmienić na swoje ustawienia sieci
+    IPAddress ip(10,186,10,koncowka_ip); //34-->1 35-->2 36-->3 37--> 4
+    IPAddress gateway(10,186,10,3); 
+    IPAddress subnet(255,255,255,0);
+    WiFi.config(ip, gateway, subnet);
+  
+
+  WiFiMulti.addAP(STASSID, STAPSK);
 
 
   attachInterrupt(digitalPinToInterrupt(czujnik), dodaj_l_jeden, FALLING); //Ten interrupt musi znaleźć się na końcu całego setupa
@@ -65,7 +94,11 @@ void setup() {
 }
 
 void loop() {
-
+  if(digitalRead(D7)==HIGH){
+    digitalWrite(led, HIGH);
+  }else{
+    digitalWrite(led, LOW);
+  }
   // wait for WiFi connection
   //Generowanie danych
   if ((WiFiMulti.run() == WL_CONNECTED)) {
@@ -102,12 +135,12 @@ void loop() {
           if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
             String payload = http.getString();
             licznik_impulsow = 0;
-            if (flip_flop == 0) {
-              digitalWrite(led, HIGH);
-              flip_flop = 1;
+            if (flip_flop_neta == 0) {
+              digitalWrite(led_neta, HIGH);
+              flip_flop_neta = 1;
             } else {
-              digitalWrite(led, LOW);
-              flip_flop = 0;
+              digitalWrite(led_neta, LOW);
+              flip_flop_neta = 0;
             }
             Serial.println(payload);
           }
