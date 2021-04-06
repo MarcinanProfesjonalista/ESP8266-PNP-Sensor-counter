@@ -22,7 +22,7 @@ To pliki użyte do uruchomienia sterownika ESP8266 który odpowiada za liczenie 
 *Zliczaj kiedy czujnik zmienia stan na niski (lowering).
 2. Zainicjalizuj połączenie wifi (łącz do ustalonej sieci wifi)
 3. Nadaj licznik za pomocą HTML GET. 
-4. Oczekuj na odpowiedź. Jeżeli odpowiedź == "zapisano" to wyzeruj licznik
+Wywalono - 4. Oczekuj na odpowiedź. Jeżeli odpowiedź == "zapisano" to wyzeruj licznik
 
 ## Aby odtworzyć utracony kod wystarczy połączyć przykłady:
 1. ESP8266 HTML Client
@@ -48,6 +48,9 @@ Płyta mikrokontrolera; ESP8266; sterownika --> Płyta brandowana czarna profesj
 * Po reakji czujnika nie pojawia się reakcja na płycie głównej (jeżeli są 2 ledy dodatkowe). --> Rozwalił się transoptor. 
 * Mimo zliczania nie pojawia się więcej niż 0 na serwerze --> Oznacza to że płyta główna nie przepuszcza sygnału z czujnika do sterownika.
 * Przemyj płytkę alkoholem aby wyeliminować zwarcia od kurzu i brudu. 
+4. Sterownik nalicza za dużo elementów wyjściowych. 
+* Wstawiłem debounce do kodu w funkcji przerwania. Zapoznaj się z szybkością urządzenia a potem wprowadź obliczoną wartość czasu debouncu
+* Dla urządzenia o wydajności maxymalnej 60 szt na minutę można dać x<1000ms debouncu. Pomyśl jaki debounce będzie optymalny i wstaw nowy. 
   
 Jakby coś zawsze możecie napisać 10 mejli na p_ir@o2.pl. Im więcej mejli tym większe prawdopodobieństwo że zauważę. 
   
