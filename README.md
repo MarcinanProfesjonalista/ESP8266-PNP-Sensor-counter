@@ -21,8 +21,9 @@ To pliki użyte do uruchomienia sterownika ESP8266 który odpowiada za liczenie 
 1. Zainicjalizuj przerwanie na pinie do którego jest podłączony transoptor (nóżka D8 i D7 w zależności 
 *Zliczaj kiedy czujnik zmienia stan na niski (lowering).
 2. Zainicjalizuj połączenie wifi (łącz do ustalonej sieci wifi)
-3. Nadaj licznik za pomocą HTML GET. 
-Wywalono - 4. Oczekuj na odpowiedź. Jeżeli odpowiedź == "zapisano" to wyzeruj licznik
+3. Nadaj klucz do skryptu key.php na serwerze i oczekuj na odpowiedź
+4. Jeżeli klucz jest prawidłowy to nadaj licznik za pomocą HTML GET
+5. Nadaj licznik za pomocą HTML GET. 
 
 ## Aby odtworzyć utracony kod wystarczy połączyć przykłady:
 1. ESP8266 HTML Client
@@ -51,6 +52,9 @@ Płyta mikrokontrolera; ESP8266; sterownika --> Płyta brandowana czarna profesj
 4. Sterownik nalicza za dużo elementów wyjściowych. 
 * Wstawiłem debounce do kodu w funkcji przerwania. Zapoznaj się z szybkością urządzenia a potem wprowadź obliczoną wartość czasu debouncu
 * Dla urządzenia o wydajności maxymalnej 60 szt na minutę można dać x<1000ms debouncu. Pomyśl jaki debounce będzie optymalny i wstaw nowy. 
+5. Sterownik świeci lampką sygnalizującą zadziałanie czujnika PNP cały czas, nie reaguje na inne bodźce
+* Po włączeniu zasilania (wymianie bezpiecznika/uruchomieniu ponownym maszyny) może dojść do zawieszania. Aby go odwiesić wystrczy zresetować sterownik. Efekt teni nie występuje za często.
+* Wprowadzę jeszcze watchdoga który resetuje samoczynnie ten efekt... jednak jest to niebezpieczne, bo może kasować rejestry podręczne. 
   
 Jakby coś zawsze możecie napisać 10 mejli na p_ir@o2.pl. Im więcej mejli tym większe prawdopodobieństwo że zauważę. 
   
