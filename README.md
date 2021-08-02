@@ -54,7 +54,10 @@ Płyta mikrokontrolera; ESP8266; sterownika --> Płyta brandowana czarna profesj
 * Dla urządzenia o wydajności maxymalnej 60 szt na minutę można dać x<1000ms debouncu. Pomyśl jaki debounce będzie optymalny i wstaw nowy. 
 5. Sterownik świeci lampką sygnalizującą zadziałanie czujnika PNP cały czas, nie reaguje na inne bodźce
 * Po włączeniu zasilania (wymianie bezpiecznika/uruchomieniu ponownym maszyny) może dojść do zawieszania. Aby go odwiesić wystrczy zresetować sterownik. Efekt teni nie występuje za często.
-* Wprowadzę jeszcze watchdoga który resetuje samoczynnie ten efekt... jednak jest to niebezpieczne, bo może kasować rejestry podręczne. 
-  
+* Wprowadzę jeszcze watchdoga który resetuje samoczynnie ten efekt... jednak jest to niebezpieczne, bo może kasować rejestry podręczne. (Ogarnięte bez watchdoga)
+6. Sterownik nie mryga bo stracił połączenie. Efektem jest bardzo intensywne mryganie na niebiesko drugim ledem. Mryga nadal ledem czujnika. 
+* Stworzyłem 0.7 wersję programu. Teraz ESP mryga drugim ledem szybko jeżeli próbuje odnowić połączenie. Poprawiłem funkcję reconnecta. Teraz jest bardziej natrętna i prostsza. 
+* Na jakość połączenia ma też wpływ orientacja anteny ESP8266. Obróć w puszce o 90* i może złapie sygnał. 
+
 Jakby coś zawsze możecie napisać 10 mejli na p_ir@o2.pl. Im więcej mejli tym większe prawdopodobieństwo że zauważę. 
   
