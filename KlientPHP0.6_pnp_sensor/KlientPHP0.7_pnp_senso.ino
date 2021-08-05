@@ -182,6 +182,7 @@ void loop() {
                   if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
                     String payload = http.getString();
                     licznik_impulsow = 0;
+                      digitalWrite(led_neta, LOW);
                     if (flip_flop_komunikacji == 0) {
                       digitalWrite(led_komunikacji, HIGH);
                       flip_flop_komunikacji = 1;
